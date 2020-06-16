@@ -1,0 +1,7 @@
+class IndexBuffer
+{
+  constructor(gl)
+  {
+    
+  }
+}
