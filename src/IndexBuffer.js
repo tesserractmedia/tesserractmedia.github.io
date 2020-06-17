@@ -1,24 +1,25 @@
 class IndexBuffer
 {
-  constructor(gl,data,count)
+  constructor(gl,data)
   {
+    this.gl = gl;
     this.m_rendererID = gl.createBuffer();
-    this.count = count;
+    this.count = data.length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.m_rendererID);
-    gl.bufferData(gl.ARRAY_BUFFER,new Uint32Array(data),gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(data),gl.STATIC_DRAW);
   }
 
-  Bind(gl)
+  Bind()
   {
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.m_rendererID);
+    this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.m_rendererID);
   }
 
-  UnBind(gl)
+  UnBind()
   {
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, 0);
+    this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, 0);
   }
 
-  get GetCount()
+  get Count()
   {
     return this.count;
   }

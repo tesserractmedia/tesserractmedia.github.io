@@ -20,7 +20,7 @@ function main() {
 
   const indices =
   [ 0, 1, 2,
-    2, 3, 0,];
+    2, 1, 3,];
 
   const vsource =
   `attribute vec4 position;
@@ -41,22 +41,21 @@ function main() {
   const vl = gl.getAttribLocation(shader.RendererID,"position");
 
   vb = new VertexBuffer(gl,vertices);
+  vb.Bind();
 
   vbl = new VertexBufferLayout(gl);
   vbl.PushFloat(2);
-
   vao.AddBuffer(vb,vbl);
 
-  //gl.vertexAttribPointer(vb.RendererID,2,gl.FLOAT,false,0,0);
-//  gl.enableVertexAttribArray(vl);
+  ib = new IndexBuffer(gl,indices);
 
   shader.Bind();
 
+  render = new Renderer(gl);
+
   gl.clearColor(0.0,0.0,0.0,1.0);
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-
+  render.Clear();
+  render.Draw(vao,ib,shader);
 }
 
 window.onload = main;

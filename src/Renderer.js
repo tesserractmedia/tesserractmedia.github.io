@@ -1,20 +1,20 @@
 class Renderer
 {
-  constructor()
+  constructor(gl)
   {
-
+    this.gl = gl;
   }
 
-  Clear(gl)
+  Clear()
   {
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    this.gl.clear(this.gl.COLOR_BUFFER_BIT);
   }
 
-  Draw(gl,vao,ib,shader)
+  Draw(vao,ib,shader)
   {
-    vao.Bind(gl);
-    ib.Bind(gl);
-    shader.Bind(gl);
-    gl.drawElements(gl.TRIANGLES,ib.GetCount, gl.UNSIGNED_SHORT, 0);
+    vao.Bind();
+    ib.Bind();
+    shader.Bind();
+    this.gl.drawElements(this.gl.TRIANGLES,ib.Count, this.gl.UNSIGNED_SHORT, 0);
   }
 }
