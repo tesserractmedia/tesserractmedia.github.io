@@ -1,7 +1,0 @@
-class shader
-{
-  constructor(gl)
-  {
-    
-  }
-}
