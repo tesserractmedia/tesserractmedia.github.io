@@ -33,41 +33,24 @@ function main() {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
   }`;
 
-  const vshader = gl.createShader(gl.VERTEX_SHADER);
-  gl.shaderSource(vshader,vsource);
-  gl.compileShader(vshader);
-  if (!gl.getShaderParameter(vshader, gl.COMPILE_STATUS)) {
-    console.log('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(vshader));
-    gl.deleteShader(vshader);
-    return null;
-  }
+  vao = new VertexArray(gl);
+  vao.Bind();
 
-  const fshader = gl.createShader(gl.FRAGMENT_SHADER);
-  gl.shaderSource(fshader,fsource);
-  gl.compileShader(fshader);
-  if (!gl.getShaderParameter(fshader, gl.COMPILE_STATUS)) {
-    console.log('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(fshader));
-    gl.deleteShader(fshader);
-    return null;
-  }
-  const program = gl.createProgram();
-  gl.attachShader(program,vshader);
-  gl.attachShader(program,fshader);
-  gl.linkProgram(program);
+  shader = new Shader(gl,vsource,fsource);
 
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.log('Unable to initialize the shader program: ' + gl.getProgramInfoLog(program));
-  }
+  const vl = gl.getAttribLocation(shader.RendererID,"position");
 
-  const vl = gl.getAttribLocation(program,"position");
+  vb = new VertexBuffer(gl,vertices);
 
-  const vb = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, vb);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);
-  gl.vertexAttribPointer(vb,2,gl.FLOAT,false,0,0);
-  gl.enableVertexAttribArray(vl);
+  vbl = new VertexBufferLayout(gl);
+  vbl.PushFloat(2);
 
-  gl.useProgram(program);
+  vao.AddBuffer(vb,vbl);
+
+  //gl.vertexAttribPointer(vb.RendererID,2,gl.FLOAT,false,0,0);
+//  gl.enableVertexAttribArray(vl);
+
+  shader.Bind();
 
   gl.clearColor(0.0,0.0,0.0,1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);
