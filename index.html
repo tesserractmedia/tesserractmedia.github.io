@@ -1,8 +1,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="src/app.css">
-  <!--
-  <script src="src/Renderer.js"></script>-->
+  <script src="Vendor/gl-matrix.js"></script>
   <script src="src/VertexArray.js"></script>
   <script src="src/VertexBufferLayout.js"></script>
   <script src="src/VertexBuffer.js"></script>
@@ -17,7 +16,72 @@
       <h2 class="header">WebGL Test Environment</h2>
     </div>
     <div>
-      <canvas id="app" class="app" width="900" height="600"></canvas>
+      <div>
+        <canvas id="app" class="app" width="900" height="600"></canvas>
+      </div>
+      <div>
+        <div>
+          Translate Model
+          <div class="slidecontainer">
+            X <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatex">
+          </div>
+          <div class="slidecontainer">
+            Y <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatey">
+          </div>
+          <div class="slidecontainer">
+            Z <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatez">
+          </div>
+        </div>
+        <div>
+          Rotate Model
+          <div class="slidecontainer">
+            X <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatex">
+          </div>
+          <div class="slidecontainer">
+            Y <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatey">
+          </div>
+          <div class="slidecontainer">
+            Z <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatez">
+          </div>
+        </div>
+        <div>
+          Scale Model
+          <div class="slidecontainer">
+            X <input type="range" min="10" max="20" value="10" class="slider" id="mscalex">
+          </div>
+          <div class="slidecontainer">
+            Y <input type="range" min="10" max="20" value="10" class="slider" id="mscaley">
+          </div>
+          <div class="slidecontainer">
+            Z <input type="range" min="10" max="20" value="10" class="slider" id="mscalez">
+          </div>
+        </div>
+        <div>
+          Translate Camera
+          <div class="slidecontainer">
+            X <input type="range" min="-15" max="15" value="10" class="slider" id="ccamerax">
+          </div>
+          <div class="slidecontainer">
+            Y <input type="range" min="-15" max="15" value="0" class="slider" id="ccameray">
+          </div>
+          <div class="slidecontainer">
+            Z <input type="range" min="-15" max="15" value="0" class="slider" id="ccameraz">
+          </div>
+        </div>
+        <div>
+          Translate Look
+          <div class="slidecontainer">
+            X <input type="range" min="-15" max="15" value="0" class="slider" id="clookx">
+          </div>
+          <div class="slidecontainer">
+            Y <input type="range" min="-15" max="15" value="0" class="slider" id="clooky">
+          </div>
+          <div class="slidecontainer">
+            Z <input type="range" min="-15" max="15" value="0" class="slider" id="clookz">
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
     <div>
       <p class = "note">
@@ -28,7 +92,7 @@
         It is using index buffer to render.<br>
         What's next.<br>
         Loading textures.<br>
-        Future goal to render 3D models in it.<br>
+        Loading Models<br>
         Allow mouse and keyboard interaction with 3D models.<br>
       </p>
     </div>
