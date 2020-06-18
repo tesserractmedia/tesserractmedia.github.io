@@ -45,36 +45,36 @@ class Shader
     return this.m_rendererID;
   }
 
-  SetUniform1f(gl,name,value)
+  SetUniform1f(name,value)
   {
 
   }
 
-  SetUniform2f(gl,name,value)
+  SetUniform2f(name,value)
   {
 
   }
 
-  SetUniform3f(gl,name,value)
+  SetUniform3f(name,value)
   {
 
   }
 
-  SetUniformMat2f(gl,name,value)
+  SetUniformMat2f(name,value)
   {
-    const vlocation = gl.getUniformLocation(this.m_rendererID,name);
-    gl.uniformMatrix2fv(vlocation,false,value);
+    const vlocation = this.gl.getUniformLocation(this.m_rendererID,name);
+    this.gl.uniformMatrix2fv(vlocation,false,value);
   }
 
-  SetUniformMat3f(gl,name,value)
+  SetUniformMat3f(name,value)
   {
-    const vlocation = gl.getUniformLocation(this.m_rendererID,name);
-    gl.uniformMatrix3fv(vlocation,false,value);
+    const vlocation = this.gl.getUniformLocation(this.m_rendererID,name);
+    this.gl.uniformMatrix3fv(vlocation,false,value);
   }
 
-  SetUniformMat4f(gl,name,value)
+  SetUniformMat4f(name,value)
   {
-    const vlocation = gl.getUniformLocation(this.m_rendererID,name);
-    gl.uniformMatrix4fv(vlocation,false,value);
+    const vlocation = this.gl.getUniformLocation(this.m_rendererID,name);
+    this.gl.uniformMatrix4fv(vlocation,false,value);
   }
 }
