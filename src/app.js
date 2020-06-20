@@ -13,16 +13,25 @@ function main() {
   }
 
   const vertices = [
-     // front
-    -1.0, -1.0,  1.0, 1.0,
-     1.0, -1.0,  1.0, 1.0,
-     1.0,  1.0,  1.0, 1.0,
-    -1.0,  1.0,  1.0, 1.0,
-  
-    -1.0, -1.0, -1.0, 1.0,
-     1.0, -1.0, -1.0, 1.0,
-     1.0,  1.0, -1.0, 1.0,
-    -1.0,  1.0, -1.0, 1.0,
+      // front
+     -1.0, -1.0,  1.0, 1.0, 0.0, 0.0, //0
+      1.0, -1.0,  1.0, 1.0, 1.0, 0.0, //1
+      1.0,  1.0,  1.0, 1.0, 1.0, 1.0, //2
+     -1.0,  1.0,  1.0, 1.0, 0.0, 1.0, //3 
+     // back  
+
+     -1.0, -1.0, -1.0, 1.0, 0.0, 1.0, //4
+      1.0, -1.0, -1.0, 1.0, 1.0, 1.0, //5
+      1.0,  1.0, -1.0, 1.0, 1.0, 0.0, //6
+     -1.0,  1.0, -1.0, 1.0, 0.0, 0.0, //7
+
+       //fix texture 
+       //right
+       1.0,  1.0, -1.0, 1.0, 0.0, 1.0, //8
+       1.0,  1.0,  1.0, 1.0, 0.0, 0.0, //9
+       //left
+      -1.0,  1.0,  1.0, 1.0, 1.0, 0.0, //10
+      -1.0,  1.0, -1.0, 1.0, 1.0, 1.0, //11 
   
   ];
 
@@ -31,44 +40,52 @@ function main() {
     0, 1, 2,
     2, 3, 0,
     // right
-    1, 5, 6,
-    6, 2, 1,
+    1, 5, 8,
+    8, 9, 1,
     // back
     7, 6, 5,
     5, 4, 7,
     // left
-    4, 0, 3,
-    3, 7, 4,
+    4, 0, 10,
+    10, 11, 4,
     // bottom
     4, 5, 1,
     1, 0, 4,
     // top
     3, 2, 6,
     6, 7, 3,
-  
   ];
 
   const vsource =
   `attribute vec4 position;
+   attribute vec2 atexcoord;
 
   uniform mat4 proj;
   uniform mat4 view;
   uniform mat4 model;
 
+  varying highp vec2 v_texcoord;
+
   void main() {
     gl_Position = proj * view * model * position;
+    v_texcoord = atexcoord;
   }`;
 
   const fsource =
-  `void main() {
-    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  `
+  varying highp vec2 v_texcoord;
+  uniform sampler2D u_texture;
+
+  void main() {
+    gl_FragColor = texture2D(u_texture,v_texcoord);
   }`;
 
   vao = new VertexArray(gl);
   vao.Bind();
 
   shader = new Shader(gl,vsource,fsource);
-
+  shader.Bind();
+  
   const vl = gl.getAttribLocation(shader.RendererID,"position");
 
   vb = new VertexBuffer(gl,vertices);
@@ -76,9 +93,14 @@ function main() {
 
   vbl = new VertexBufferLayout(gl);
   vbl.PushFloat(4);
+  vbl.PushFloat(2);
   vao.AddBuffer(vb,vbl);
 
   ib = new IndexBuffer(gl,indices);
+  texture = new Texture(gl,"assets/container.png");
+  texture.Bind(0);
+  shader.SetUniform1i("u_texture",0);
+
 
   shader.Bind();
   {

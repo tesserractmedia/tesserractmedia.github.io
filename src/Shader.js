@@ -77,4 +77,10 @@ class Shader
     const vlocation = this.gl.getUniformLocation(this.m_rendererID,name);
     this.gl.uniformMatrix4fv(vlocation,false,value);
   }
+
+  SetUniform1i(name,value)
+  {
+    const vlocation = this.gl.getUniformLocation(this.m_rendererID,name);
+    this.gl.uniform1i(vlocation,value);
+  }
 }
