@@ -16,7 +16,7 @@ class Texture
       if(this.image.naturalHeight == 0)
       {
         console.log("image failed to load!");
-        return;
+        //return;
       }
        this.gl.bindTexture(this.gl.TEXTURE_2D, this.m_rendererID);
        this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
