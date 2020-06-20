@@ -7,8 +7,8 @@ class Texture
     gl.bindTexture(gl.TEXTURE_2D,this.m_rendererID);
     gl.texImage2D(gl.TEXTURE_2D, 0,gl.RGBA,1,1,0,gl.RGBA, gl.UNSIGNED_BYTE,new Uint8Array([1,1,1,1]));
     this.image = new Image();
-    this.image.onload = this.Load();
     this.image.src = imgurl;
+    this.image.onload = this.Load();
   }
 
   Load()
@@ -16,7 +16,7 @@ class Texture
       if(this.image.naturalHeight == 0)
       {
         console.log("image failed to load!");
-        //return;
+        return;
       }
        this.gl.bindTexture(this.gl.TEXTURE_2D, this.m_rendererID);
        this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
