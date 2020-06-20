@@ -19,19 +19,22 @@ class Texture
         return;
       }
        this.gl.bindTexture(this.gl.TEXTURE_2D, this.m_rendererID);
-       this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
-       this.gl.texImage2D(this.gl.TEXTURE_2D, 0,this.gl.RGBA,this.gl.RGBA, this.gl.UNSIGNED_BYTE,this.image);
-    
-     if (Texture.isPowerOf2(this.image.width) && Texture.isPowerOf2(this.image.height)) {
-        // Yes, it's a power of 2. Generate mips.
-      this.gl.generateMipmap(this.gl.TEXTURE_2D);
+       
+      this.gl.pixelStorei(this.gl.UNPACK_FLIP_Y_WEBGL, true);
+      this.gl.texImage2D(this.gl.TEXTURE_2D, 0,this.gl.RGBA,this.gl.RGBA, this.gl.UNSIGNED_BYTE,this.image);
+      
+      if (Texture.isPowerOf2(this.image.width) && Texture.isPowerOf2(this.image.height)) {
+       // Yes, it's a power of 2. Generate mips.
+        this.gl.generateMipmap(this.gl.TEXTURE_2D);
          } 
       else {
+
         // No, it's not a power of 2. Turn off mips and set
         // wrapping to clamp to edge
-        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S,this. gl.CLAMP_TO_EDGE);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.CLAMP_TO_EDGE);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.CLAMP_TO_EDGE);
         this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
       }
     }
 
