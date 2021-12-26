@@ -1,102 +1,72 @@
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-  <link rel="stylesheet" type="text/css" href="src/app.css">
-  <script src="Vendor/gl-matrix.js"></script>
-  <script src="src/VertexArray.js"></script>
-  <script src="src/VertexBufferLayout.js"></script>
-  <script src="src/VertexBuffer.js"></script>
-  <script src="src/IndexBuffer.js"></script>
-  <script src="src/Shader.js"></script>
-  <script src="src/Texture.js"></script>
-  <script src="src/Renderer.js"></script>
-  <script src="src/app.js"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <title>Hello, world!</title>
 </head>
+
 <body>
-  <div>
-    <div>
-      <h2 class="header">WebGL Test Environment</h2>
-    </div>
-    <div>
-      <div>
-        <canvas id="app" class="app" width="900" height="600"></canvas>
-      </div>
-      <div>
-        <div>
-          Translate Model
-          <div class="slidecontainer">
-            X <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatex">
-          </div>
-          <div class="slidecontainer">
-            Y <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatey">
-          </div>
-          <div class="slidecontainer">
-            Z <input type="range" min="-15" max="15" value="0" class="slider" id="mtranslatez">
-          </div>
-        </div>
-        <div>
-          Rotate Model
-          <div class="slidecontainer">
-            X <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatex">
-          </div>
-          <div class="slidecontainer">
-            Y <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatey">
-          </div>
-          <div class="slidecontainer">
-            Z <input type="range" min="-15.0" max="15.0" value="0.0" class="slider" id="mrotatez">
-          </div>
-        </div>
-        <div>
-          Scale Model
-          <div class="slidecontainer">
-            X <input type="range" min="10" max="20" value="10" class="slider" id="mscalex">
-          </div>
-          <div class="slidecontainer">
-            Y <input type="range" min="10" max="20" value="10" class="slider" id="mscaley">
-          </div>
-          <div class="slidecontainer">
-            Z <input type="range" min="10" max="20" value="10" class="slider" id="mscalez">
-          </div>
-        </div>
-        <div>
-          Translate Camera
-          <div class="slidecontainer">
-            X <input type="range" min="-15" max="15" value="10" class="slider" id="ccamerax">
-          </div>
-          <div class="slidecontainer">
-            Y <input type="range" min="-15" max="15" value="0" class="slider" id="ccameray">
-          </div>
-          <div class="slidecontainer">
-            Z <input type="range" min="-15" max="15" value="0" class="slider" id="ccameraz">
-          </div>
-        </div>
-        <div>
-          Translate Look
-          <div class="slidecontainer">
-            X <input type="range" min="-15" max="15" value="0" class="slider" id="clookx">
-          </div>
-          <div class="slidecontainer">
-            Y <input type="range" min="-15" max="15" value="0" class="slider" id="clooky">
-          </div>
-          <div class="slidecontainer">
-            Z <input type="range" min="-15" max="15" value="0" class="slider" id="clookz">
-          </div>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tesserract Media</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
+  </nav>
+  <footer class="container-fluid bg-secondary">
+    <div class="row">
+      <div class="col">
+
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        
+      </div>
     </div>
-    <div>
-      <p class = "note">
-        This is a webgl based test environment deployed by Tesserract Media.<br>
-        Currently in initial stage<br>
-        What's new.<br>
-        The project is made on OOP pattern.<br>
-        It is using index buffer to render.<br>
-        What's next.<br>
-        Loading textures.<br>
-        Loading Models<br>
-        Allow mouse and keyboard interaction with 3D models.<br>
-      </p>
-    </div>
-  </div>
+  </footer>
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
